@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quizzlers.QuizzlersController">
+   <HBox prefHeight="100.0" prefWidth="200.0">
+      <Button fx:id="addCardButton" mnemonicParsing="false" onAction="#onAddCardButtonClick" text="Add Card" textAlignment="CENTER">
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+      </Button>
+      <Button fx:id="browseCardsButton" mnemonicParsing="false" onAction="#onBrowseCardsButtonClick" text="Browse Cards" textAlignment="CENTER">
+         <HBox.margin>
+            <Insets left="10.0" />
+         </HBox.margin>
+      </Button>
+      <Button fx:id="quizButton" mnemonicParsing="false" onAction="#onQuizButtonClick" text="Quiz" textAlignment="CENTER">
+         <HBox.margin>
+            <Insets left="10.0" />
+         </HBox.margin>
+      </Button>
+      <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonClick" text="Exit" textAlignment="CENTER">
+         <HBox.margin>
+            <Insets left="10.0" />
+         </HBox.margin>
+      </Button>
+      <VBox.margin>
+         <Insets left="165.0" top="200.0" />
+      </VBox.margin>
+   </HBox>
+</VBox>

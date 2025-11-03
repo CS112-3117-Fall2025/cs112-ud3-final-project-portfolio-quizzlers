@@ -1,8 +1,8 @@
-module cs112.ud3 {
+module com.example.quizzlers {
     requires javafx.controls;
     requires javafx.fxml;
 
 
-    opens cs112.ud3 to javafx.fxml;
-    exports cs112.ud3;
+    opens com.example.quizzlers to javafx.fxml;
+    exports com.example.quizzlers;
 }
