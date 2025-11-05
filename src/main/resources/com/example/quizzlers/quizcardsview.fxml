@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quizzlers.QuizCardsController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <Label text="Match the name to the definition.">
+      <VBox.margin>
+         <Insets bottom="10.0" />
+      </VBox.margin>
+   </Label>
+   <HBox prefHeight="20.0" prefWidth="200.0">
+      <children>
+         <VBox prefHeight="200.0" prefWidth="160.0">
+            <children>
+            
+                <Label fx:id="quizCardsNameLabel" text="Names" />
+            </children>
+            <HBox.margin>
+               <Insets right="20.0" />
+            </HBox.margin>
+         </VBox>
+         <VBox prefHeight="200.0" prefWidth="100.0">
+            <children>
+               <Label text="Definition" />
+            </children>
+         </VBox>
+      </children>
+   </HBox>
+   <HBox prefHeight="200.0" prefWidth="200.0">
+      <children>
+         <VBox prefHeight="200.0" prefWidth="160.0">
+            <children>
+               <ListView fx:id="quizCardsNameListView" prefHeight="200.0" prefWidth="160.0" />
+            </children>
+            <HBox.margin>
+               <Insets right="20.0" />
+            </HBox.margin>
+         </VBox>
+         <VBox prefHeight="200.0" prefWidth="180.0">
+            <children>
+               <Label fx:id="quizCardsInfoLabel" wrapText="true" />
+            </children>
+         </VBox>
+      </children>
+   </HBox>
+   <HBox prefHeight="100.0" prefWidth="200.0">
+      <children>
+         <Button fx:id="quizCardsConfirmAnswerButton" mnemonicParsing="false" onAction="#onConfirmAnswerButtonClick" text="Confirm Answer" />
+         <Button mnemonicParsing="false" text="Next">
+            <HBox.margin>
+               <Insets left="18.0" />
+            </HBox.margin>
+         </Button>
+         <Label text="Correct!" textFill="#3fab82">
+            <HBox.margin>
+               <Insets left="20.0" top="5.0" />
+            </HBox.margin>
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
+      </children>
+      <VBox.margin>
+         <Insets top="10.0" />
+      </VBox.margin>
+   </HBox>
+</VBox>

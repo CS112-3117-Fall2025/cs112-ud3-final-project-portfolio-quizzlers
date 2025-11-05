@@ -7,7 +7,7 @@ public class QuizCard {
     private String optionD;
     private String answer;
 
-    private final String DEFAULT_OPTION_TEXT = "Option A";
+    private final String DEFAULT_OPTION_TEXT = "Option";
 
     private int numOptions = 4;
     private String[] optionsArray = new String[numOptions];

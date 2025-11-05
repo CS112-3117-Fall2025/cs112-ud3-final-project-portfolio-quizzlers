@@ -26,7 +26,7 @@ public class QuizzlersController {
     protected void onAddCardButtonClick() {
         try {
             Stage addCardStage = new Stage();
-            addCardStage.setTitle("New Window");
+            addCardStage.setTitle("Add Card");
 
             // Ensure the path to the FXML is correct
             Parent newSceneParent = FXMLLoader.load(getClass().getResource("/com/example/quizzlers/addcardview.fxml"));
@@ -46,11 +46,45 @@ public class QuizzlersController {
 
     @FXML
     protected void onBrowseCardsButtonClick() {
-        cardNameLabel.setText("Welcome to JavaFX Application!");
+        try {
+            Stage browseCardsStage = new Stage();
+            browseCardsStage.setTitle("Browse Cards");
+
+            // Ensure the path to the FXML is correct
+            Parent newSceneParent = FXMLLoader.load(getClass().getResource("/com/example/quizzlers/browsecardsview.fxml"));
+
+            // Create a Scene for the new Stage
+            Scene newScene = new Scene(newSceneParent);
+            browseCardsStage.setScene(newScene);
+
+            // Show the new Stage on the JavaFX Application Thread
+            browseCardsStage.show();
+
+        } catch (IOException e) {
+            // Log the error to help debug
+            e.printStackTrace();
+        }
     }
     @FXML
     protected void onQuizButtonClick() {
-        cardNameLabel.setText("Welcome to JavaFX Application!");
+        try {
+            Stage quizCardsStage = new Stage();
+            quizCardsStage.setTitle("Quiz Cards");
+
+            // Ensure the path to the FXML is correct
+            Parent newSceneParent = FXMLLoader.load(getClass().getResource("/com/example/quizzlers/quizcardsview.fxml"));
+
+            // Create a Scene for the new Stage
+            Scene newScene = new Scene(newSceneParent);
+            quizCardsStage.setScene(newScene);
+
+            // Show the new Stage on the JavaFX Application Thread
+            quizCardsStage.show();
+
+        } catch (IOException e) {
+            // Log the error to help debug
+            e.printStackTrace();
+        }
     }
     @FXML
     protected void onExitButtonClick() {
