@@ -13,6 +13,7 @@ public class Quizzlers extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Quizzlers.class.getResource("mainview.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("Quizzlers");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }

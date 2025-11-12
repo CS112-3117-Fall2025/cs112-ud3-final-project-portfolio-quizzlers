@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quizzlers.QuizCardsController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quizzlers.QuizCardsController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -36,7 +36,7 @@
       <children>
          <VBox prefHeight="200.0" prefWidth="160.0">
             <children>
-               <ListView fx:id="quizCardsNameListView" prefHeight="200.0" prefWidth="160.0" />
+               <ListView fx:id="quizCardsNameListView" maxHeight="-Infinity" prefHeight="200.0" prefWidth="160.0" />
             </children>
             <HBox.margin>
                <Insets right="20.0" />

@@ -1,5 +1,6 @@
 package com.example.quizzlers;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -36,6 +38,8 @@ public class QuizzlersController {
             addCardStage.setScene(newScene);
 
             // Show the new Stage on the JavaFX Application Thread
+            addCardStage.initModality(Modality.APPLICATION_MODAL); // Or Modality.WINDOW_MODAL, or Modality.NONE
+            addCardStage.setResizable(false);
             addCardStage.show();
 
         } catch (IOException e) {
@@ -58,6 +62,8 @@ public class QuizzlersController {
             browseCardsStage.setScene(newScene);
 
             // Show the new Stage on the JavaFX Application Thread
+            browseCardsStage.initModality(Modality.APPLICATION_MODAL); // Or Modality.WINDOW_MODAL, or Modality.NONE
+            browseCardsStage.setResizable(false);
             browseCardsStage.show();
 
         } catch (IOException e) {
@@ -79,6 +85,8 @@ public class QuizzlersController {
             quizCardsStage.setScene(newScene);
 
             // Show the new Stage on the JavaFX Application Thread
+            quizCardsStage.initModality(Modality.APPLICATION_MODAL); // Or Modality.WINDOW_MODAL, or Modality.NONE
+            quizCardsStage.setResizable(false);
             quizCardsStage.show();
 
         } catch (IOException e) {
@@ -88,6 +96,6 @@ public class QuizzlersController {
     }
     @FXML
     protected void onExitButtonClick() {
-        System.exit(0);
+        Platform.exit();
     }
 }
