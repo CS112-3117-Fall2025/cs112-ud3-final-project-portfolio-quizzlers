@@ -52,12 +52,12 @@
    <HBox prefHeight="100.0" prefWidth="200.0">
       <children>
          <Button fx:id="quizCardsConfirmAnswerButton" mnemonicParsing="false" onAction="#onConfirmAnswerButtonClick" text="Confirm Answer" />
-         <Button mnemonicParsing="false" text="Next">
+         <Button fx:id="quizCardsNextButton" mnemonicParsing="false" onAction="#onNextButtonClick" text="Next">
             <HBox.margin>
                <Insets left="18.0" />
             </HBox.margin>
          </Button>
-         <Label text="Correct!" textFill="#3fab82">
+         <Label fx:id="correctOrWrongLabel" textFill="#3fab82">
             <HBox.margin>
                <Insets left="20.0" top="5.0" />
             </HBox.margin>

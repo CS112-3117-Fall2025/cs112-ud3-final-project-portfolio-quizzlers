@@ -7,35 +7,51 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 public class QuizCardsController {
     public Label quizCardsNameLabel;
     public Label quizCardsInfoLabel;
     public Button quizCardsConfirmAnswerButton;
+    private int currentCorrectAnswerIndex = -1;
 
     @FXML
     public ListView<String> quizCardsNameListView;
+    public Label correctOrWrongLabel;
+    public Button quizCardsNextButton;
     ArrayList<DefinitionCard> cardList = new ArrayList<DefinitionCard>(AddCardController.getCardList());
     public final int MAX_OPTION_AMOUNT = 4;
     int numOptions = 0;
     ArrayList<Integer> randomlyPickedOptions;
+    ObservableList<String> cardItems = FXCollections.observableArrayList();
 
     public void initialize() {
         numOptions = getOptionAmount();
         randomlyPickedOptions = new ArrayList<Integer>(getOptionAmount());
-        ObservableList<String> cardItems = FXCollections.observableArrayList();
-        randomizeCurrentList();
 
+        randomizeCurrentList();
+        resetOptionList();
+
+        setRandomlyPickedAnswerIndex();
+        updateInfoLabel();
+
+        quizCardsNextButton.setDisable(true);
+    }
+
+    public void resetOptionList()
+    {
+        cardItems.clear();
         for (int i = 0; i < randomlyPickedOptions.size(); i++)
         {
             //System.out.println("Item #" + i + " is equal to " + randomlyPickedOptionsArray[i]);
             cardItems.add(cardList.get(randomlyPickedOptions.get(i)).getName());
         }
         quizCardsNameListView.setItems(cardItems);
-        quizCardsInfoLabel.setText(cardList.get(randomlyPickAnswer()).getDefinition());
     }
+
     public int getOptionAmount()
     {
         int cardAmount = cardList.size();
@@ -74,11 +90,53 @@ public class QuizCardsController {
         }
     }
 
-    public int randomlyPickAnswer()
+    public void setRandomlyPickedAnswerIndex()
     {
-        return (int) (Math.random() * randomlyPickedOptions.size());
+        currentCorrectAnswerIndex = (int) (Math.random() * randomlyPickedOptions.size());
+    }
+
+    public void updateInfoLabel() {
+        int correctCardIndex = randomlyPickedOptions.get(currentCorrectAnswerIndex);
+        quizCardsInfoLabel.setText(cardList.get(correctCardIndex).getDefinition());
     }
 
     public void onConfirmAnswerButtonClick(ActionEvent event) {
+
+        int selectedIndex = quizCardsNameListView.getSelectionModel().getSelectedIndex();
+
+        if (selectedIndex >= 0) {
+            System.out.println("Selected item: " + selectedIndex);
+
+            if(selectedIndex == currentCorrectAnswerIndex)
+            {
+                System.out.println("User's selection is " + selectedIndex + ". Answer was " + currentCorrectAnswerIndex + ",");
+                correctOrWrongLabel.setText("Correct!");
+                correctOrWrongLabel.setTextFill(Color.GREEN);
+            }
+            else
+            {
+                System.out.println("User's selection is " + selectedIndex + ". Answer was " + currentCorrectAnswerIndex + ",");
+                correctOrWrongLabel.setText("Incorrect!");
+                correctOrWrongLabel.setTextFill(Color.RED);
+            }
+
+            quizCardsConfirmAnswerButton.setDisable(true);
+            quizCardsNextButton.setDisable(false);
+        } else {
+            System.out.println("No item selected.");
+        }
+    }
+
+    public void onNextButtonClick(ActionEvent event) {
+        quizCardsConfirmAnswerButton.setDisable(false);
+        quizCardsNextButton.setDisable(true);
+
+        randomizeCurrentList();
+        resetOptionList();
+
+        setRandomlyPickedAnswerIndex();
+        updateInfoLabel();
+
+        correctOrWrongLabel.setText("");
     }
 }
