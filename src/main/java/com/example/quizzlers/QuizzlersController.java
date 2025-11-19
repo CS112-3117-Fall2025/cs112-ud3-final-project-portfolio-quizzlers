@@ -6,23 +6,27 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class QuizzlersController {
-    public Label cardDefinitionLabel;
     public Button addCardButton;
     public Button browseCardsButton;
     public Button quizButton;
     public Button exitButton;
-    public TextArea inputDefinitionTextbox;
-    public TextArea inputNameTextbox;
+
     @FXML
-    private Label cardNameLabel;
+    public void initialize() {
+        browseCardsButton.setDisable(true);
+        quizButton.setDisable(true);
+    }
+
+    public void enableCardActions() {
+        browseCardsButton.setDisable(false);
+        quizButton.setDisable(false);
+    }
 
     @FXML
     protected void onAddCardButtonClick() {
@@ -30,20 +34,20 @@ public class QuizzlersController {
             Stage addCardStage = new Stage();
             addCardStage.setTitle("Add Card");
 
-            // Ensure the path to the FXML is correct
-            Parent newSceneParent = FXMLLoader.load(getClass().getResource("/com/example/quizzlers/addcardview.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quizzlers/addcardview.fxml"));
+            Parent newSceneParent = loader.load();
 
-            // Create a Scene for the new Stage
+            AddCardController addCardController = loader.getController();
+            addCardController.setMainController(this);
+
             Scene newScene = new Scene(newSceneParent);
             addCardStage.setScene(newScene);
 
-            // Show the new Stage on the JavaFX Application Thread
-            addCardStage.initModality(Modality.APPLICATION_MODAL); // Or Modality.WINDOW_MODAL, or Modality.NONE
+            addCardStage.initModality(Modality.APPLICATION_MODAL);
             addCardStage.setResizable(false);
             addCardStage.show();
 
         } catch (IOException e) {
-            // Log the error to help debug
             e.printStackTrace();
         }
     }
@@ -54,46 +58,40 @@ public class QuizzlersController {
             Stage browseCardsStage = new Stage();
             browseCardsStage.setTitle("Browse Cards");
 
-            // Ensure the path to the FXML is correct
             Parent newSceneParent = FXMLLoader.load(getClass().getResource("/com/example/quizzlers/browsecardsview.fxml"));
 
-            // Create a Scene for the new Stage
             Scene newScene = new Scene(newSceneParent);
             browseCardsStage.setScene(newScene);
 
-            // Show the new Stage on the JavaFX Application Thread
-            browseCardsStage.initModality(Modality.APPLICATION_MODAL); // Or Modality.WINDOW_MODAL, or Modality.NONE
+            browseCardsStage.initModality(Modality.APPLICATION_MODAL);
             browseCardsStage.setResizable(false);
             browseCardsStage.show();
 
         } catch (IOException e) {
-            // Log the error to help debug
             e.printStackTrace();
         }
     }
+
     @FXML
     protected void onQuizButtonClick() {
         try {
             Stage quizCardsStage = new Stage();
             quizCardsStage.setTitle("Quiz Cards");
 
-            // Ensure the path to the FXML is correct
             Parent newSceneParent = FXMLLoader.load(getClass().getResource("/com/example/quizzlers/quizcardsview.fxml"));
 
-            // Create a Scene for the new Stage
             Scene newScene = new Scene(newSceneParent);
             quizCardsStage.setScene(newScene);
 
-            // Show the new Stage on the JavaFX Application Thread
-            quizCardsStage.initModality(Modality.APPLICATION_MODAL); // Or Modality.WINDOW_MODAL, or Modality.NONE
+            quizCardsStage.initModality(Modality.APPLICATION_MODAL);
             quizCardsStage.setResizable(false);
             quizCardsStage.show();
 
         } catch (IOException e) {
-            // Log the error to help debug
             e.printStackTrace();
         }
     }
+
     @FXML
     protected void onExitButtonClick() {
         Platform.exit();

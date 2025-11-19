@@ -12,8 +12,7 @@ public class BrowseCardsController {
     public Label browseCardsInfoLabel;
     public Label browseCardsNameLabel;
 
-    @FXML
-    private ListView<String> browseCardsNameListView;
+    public ListView<String> browseCardsNameListView;
     ArrayList<DefinitionCard> cardList = new ArrayList<DefinitionCard>(AddCardController.getCardList());
 
     public void initialize() {

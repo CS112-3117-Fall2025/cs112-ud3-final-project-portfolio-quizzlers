@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class AddCardController {
@@ -20,40 +19,40 @@ public class AddCardController {
     static ArrayList<DefinitionCard> cardList = new ArrayList<DefinitionCard>();
     public Label warningLabel;
 
+    private QuizzlersController mainController;
+
+    public void setMainController(QuizzlersController controller) {
+        mainController = controller;
+    }
+
     @FXML
-    protected void onConfirmAddButtonClick(ActionEvent event) {
-        // Take information and create new card
-        if (validateNewCard())
-        {
-            cardList.add(new DefinitionCard(inputNameTextbox.getText(), inputDefinitionTextbox.getText(), "Default Category"));
+    public void onConfirmAddButtonClick(ActionEvent event) {
+        try {
+            validateNewCard();
+            cardList.add(new DefinitionCard(inputNameTextbox.getText(), inputDefinitionTextbox.getText()));
 
-            // Close everything
+            if (cardList.size() == 1 && mainController != null) {
+                mainController.enableCardActions();
+            }
 
-            // Get the source of the event (e.g., a Button)
             Node source = (Node) event.getSource();
-            // Get the Scene from the Node
             Stage stage = (Stage) source.getScene().getWindow();
-            // Close the Stage
             stage.close();
-        }
-        else
-        {
+
+        } catch (CardAlreadyExistsException e) {
             warningLabel.setText("Cannot add card. Name or definition is already used.");
-            System.out.println(("You already have a card with that name or definition."));
+            System.out.println("User attempted to add card with an already used name or definition.");
         }
     }
 
-    public boolean validateNewCard()
-    {
-        // Check if name already exists
-        for (int i = 0; i < cardList.size(); i++)
-        {
-            if (inputNameTextbox.getText().equalsIgnoreCase(cardList.get(i).getName()) || inputDefinitionTextbox.getText().equalsIgnoreCase(cardList.get(i).getDefinition()))
-            {
-                return false;
+    public void validateNewCard() throws CardAlreadyExistsException {
+        for (int i = 0; i < cardList.size(); i++) {
+            if (inputNameTextbox.getText().equalsIgnoreCase(cardList.get(i).getName()) ||
+                    inputDefinitionTextbox.getText().equalsIgnoreCase(cardList.get(i).getDefinition())) {
+
+                throw new CardAlreadyExistsException();
             }
         }
-        return true;
     }
 
     public static ArrayList<DefinitionCard> getCardList()
