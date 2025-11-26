@@ -3,7 +3,7 @@
 
 Quizzlers is a standalone, offline flash card maker and quizzer. Users can create, browse and quiz themselves on flash cards they create themselves. As you may have guessed from the name, Quizzlers is inspired by other flash card apps. The pull here, however, is the ease of use; all of the functions you'd need are in one place on the main scene with simple buttons.
 
-(Gif goes here)
+![quizzlers](https://github.com/user-attachments/assets/3e9cca7f-57e9-4ea0-ac7b-205046bb1604)
 
 ## UML Diagram
 <img width="2278" height="1729" alt="Project_ UD2 (CS112) - Quizzlers_UML" src="https://github.com/user-attachments/assets/ce33090c-2293-42e2-8f21-2184c380db77" />
